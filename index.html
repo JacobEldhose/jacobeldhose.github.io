@@ -48,7 +48,7 @@ nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-co
 .hs-key{font-size:.6rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);}
 
 /* ── PAGES ── */
-.page{display:none;position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:1.75rem 1.25rem;}
+.page{display:none;position:relative;z-index:1;max-width:1300px;margin:0 auto;padding:1.75rem 1.25rem;}
 .page.on{display:block;}
 
 /* ── SECTION HEADING ── */
@@ -60,33 +60,34 @@ nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-co
 .sh.green{color:var(--green);}
 
 /* ── GROUP STANDINGS ── */
-.groups-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1rem;margin-bottom:2rem;}
-.group-card{background:var(--s1);border:1px solid var(--border);border-radius:8px;overflow:hidden;}
-.group-card-header{padding:.65rem 1rem;display:flex;align-items:center;justify-content:space-between;
+.groups-grid{display:grid;grid-template-columns:1fr;gap:1.25rem;margin-bottom:2rem;}
+.group-card{background:var(--s1);border:1px solid var(--border);border-radius:8px;overflow:hidden;min-width:0;}
+.group-card-header{padding:.7rem 1.1rem;display:flex;align-items:center;justify-content:space-between;
   background:linear-gradient(135deg,rgba(0,212,255,.08),rgba(0,255,136,.04));border-bottom:1px solid var(--border);}
-.group-name{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:2px;color:var(--cyan);}
-.group-tag{font-size:.6rem;letter-spacing:1.5px;color:var(--muted);text-transform:uppercase;}
-.standings-table{width:100%;border-collapse:collapse;font-size:.8rem;}
-.standings-table th{padding:.45rem .6rem;text-align:center;font-size:.6rem;letter-spacing:1.5px;
-  text-transform:uppercase;color:var(--muted);font-weight:600;border-bottom:1px solid var(--border);}
-.standings-table th:first-child{text-align:left;padding-left:.85rem;}
-.standings-table td{padding:.5rem .6rem;text-align:center;border-bottom:1px solid rgba(30,45,58,.5);}
+.group-name{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:2px;color:var(--cyan);}
+.group-tag{font-size:.62rem;letter-spacing:1.5px;color:var(--muted);text-transform:uppercase;}
+.standings-table{width:100%;border-collapse:collapse;font-size:.83rem;table-layout:fixed;}
+.standings-table th{padding:.5rem .5rem;text-align:center;font-size:.65rem;letter-spacing:1px;
+  text-transform:uppercase;color:var(--muted);font-weight:600;border-bottom:1px solid var(--border);white-space:nowrap;}
+.standings-table th:first-child{text-align:left;padding-left:1rem;width:42%;}
+.standings-table th:not(:first-child){width:8%;}
+.standings-table td{padding:.55rem .5rem;text-align:center;border-bottom:1px solid rgba(30,45,58,.5);}
 .standings-table tr:last-child td{border-bottom:none;}
-.standings-table td:first-child{text-align:left;padding-left:.85rem;}
+.standings-table td:first-child{text-align:left;padding-left:1rem;}
 .standings-table tr:hover td{background:rgba(255,255,255,.02);}
-.team-cell{display:flex;align-items:center;gap:.45rem;}
-.team-flag{font-size:.9rem;}
-.team-name-sm{font-weight:600;font-size:.8rem;}
-.team-player{font-size:.65rem;color:var(--muted);}
-.pts-cell{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;color:var(--cyan);}
-.rank-badge{width:18px;height:18px;border-radius:50%;display:inline-flex;align-items:center;
-  justify-content:center;font-size:.6rem;font-weight:700;margin-right:.3rem;flex-shrink:0;}
+.team-cell{display:flex;align-items:center;gap:.4rem;}
+.team-flag{font-size:.95rem;flex-shrink:0;}
+.team-name-sm{font-weight:600;font-size:.82rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.team-player{font-size:.65rem;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.pts-cell{font-family:'Bebas Neue',sans-serif;font-size:1.15rem;color:var(--cyan);}
+.rank-badge{width:19px;height:19px;border-radius:50%;display:inline-flex;align-items:center;
+  justify-content:center;font-size:.58rem;font-weight:700;margin-right:.25rem;flex-shrink:0;}
 .rank-badge.q{background:rgba(0,255,136,.15);color:var(--green);border:1px solid rgba(0,255,136,.3);}
 .rank-badge.e{background:rgba(255,68,68,.1);color:var(--red);border:1px solid rgba(255,68,68,.2);}
 .rank-badge.n{background:var(--dim);color:var(--muted);border:1px solid var(--border);}
-.gd-pos{color:var(--green);font-size:.78rem;}
-.gd-neg{color:var(--red);font-size:.78rem;}
-.gd-neu{color:var(--muted);font-size:.78rem;}
+.gd-pos{color:var(--green);font-size:.8rem;}
+.gd-neg{color:var(--red);font-size:.8rem;}
+.gd-neu{color:var(--muted);font-size:.8rem;}
 .qual-line{border-top:2px dashed rgba(0,255,136,.25) !important;}
 
 /* ── MATCHDAY TABS ── */
@@ -202,6 +203,8 @@ nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-co
   .hero{padding:2rem .9rem 2rem;}
   .hero-stats{gap:1.5rem;}
   .groups-grid{grid-template-columns:1fr;}
+  .standings-table th:first-child{width:44%;}
+  .standings-table th:not(:first-child){width:8%;}
   .mcard{gap:.5rem;padding:.6rem .75rem;}
 }
 </style>
@@ -438,7 +441,14 @@ function computeStandings() {
   });
 }
 
-function statusNorm(s){ return (s||'').toLowerCase().trim(); }
+function statusNorm(s){
+  const v = (s||'').toLowerCase().trim();
+  // normalise all variants → canonical 4 values
+  if (v === 'completed' || v === 'done' || v === 'finish' || v === 'finished' || v === 'ft') return 'complete';
+  if (v === 'ongoing' || v === 'inprogress' || v === 'in progress' || v === 'in-progress') return 'live';
+  if (v === 'delayed' || v === 'rescheduled') return 'postponed';
+  return v; // upcoming, live, complete, postponed already fine
+}
 
 function winner(m){
   if (m.score1===null||m.score2===null) return null;
